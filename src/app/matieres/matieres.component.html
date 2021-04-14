@@ -1,0 +1,30 @@
+<main>
+  <div class="row">
+    <div class="col-sm-6">
+      <h4>Liste des matieres</h4>
+    </div>
+  </div>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Matiere Column -->
+    <ng-container matColumnDef="matiere">
+      <th mat-header-cell *matHeaderCellDef>Matiere</th>
+      <td mat-cell *matCellDef="let element"> {{element.matiere}} </td>
+    </ng-container>
+    <ng-container matColumnDef="pathImage">
+        <th mat-header-cell *matHeaderCellDef>Image</th>
+        <td mat-cell *matCellDef="let element"> <img src="{{element.pathImage}}" height="90" width="90"></td>
+      </ng-container>
+      <ng-container matColumnDef="nomProfesseur">
+        <th mat-header-cell *matHeaderCellDef>Professeur</th>
+        <td mat-cell *matCellDef="let element"> {{element.nomProfesseur}}</td>
+      </ng-container>
+      <ng-container matColumnDef="pathProfesseur">
+        <th mat-header-cell *matHeaderCellDef>Photo du Professeur</th>
+        <td mat-cell *matCellDef="let element"> <img src="{{element.pathProfesseur}}" height="90" width="90"></td>
+      </ng-container>
+
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  </main>
