@@ -1,0 +1,96 @@
+<main>
+  <div class="row">
+    <div class="col-sm-6">
+      <h3>Liste des assignments</h3>
+    </div>
+    <div class="col-sm-3">
+      <a routerLink="/matieres" class="ajouterBtn">
+        <button mat-flat-button color="primary">
+          Liste des matieres
+        </button>
+      </a>
+    </div>
+    <div class="col-sm-3">
+      <a routerLink="/add" class="ajouterBtn">
+        <button mat-flat-button color="accent">
+          Ajouter un assignment
+        </button>
+      </a>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+
+  <mat-progress-bar *ngIf="show" mode="indeterminate"></mat-progress-bar>
+
+  <mat-list *ngIf="!show">
+    <div class="row">
+      <mat-card *ngFor="let a of assignments" class="card col-sm-6">
+        <a routerLink="/assignment/{{a.id}}">
+          <mat-card-header>
+            <div mat-card-avatar class="header-image">
+              <img src="{{a.matiere.pathImage}}" alt="{{a.matiere.nom}}" class="center">
+            </div>
+            <mat-card-title>{{a.nom}}</mat-card-title>
+            <mat-card-subtitle>{{a.matiere.nom}}</mat-card-subtitle>
+          </mat-card-header>
+        </a>
+        <mat-card-content>
+          <p>Auteur: {{a.auteur}}</p>
+          <span *ngIf="a.rendu; else nonsoumis" appRendu>
+            Rendu par l'élève.
+          </span>
+          <ng-template #nonsoumis>
+            <span appNonRendu>
+              Pas encore rendu par l'élève.
+            </span>
+          </ng-template>
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="row">
+            <div class="col-sm-8">
+              <h3 mat-subheader>{{a.dateDeRendu | date}}</h3>
+            </div>
+            <div class="col-sm-4">
+              <div class="prof-image">
+                <img src="{{a.matiere.prof.pathProfesseur}}" alt="{{a.matiere.prof.nomProfesseur}}" class="center">
+              </div>
+            </div>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </mat-list>
+
+    <br *ngIf="show">
+    <p *ngIf="show" style="text-align: center;">Chargement ...</p>
+
+  <br>
+  <div *ngIf="!show" style="position: relative; display: inline-block;">
+    <mat-form-field>
+      <mat-select placeholder="Limit" [(ngModel)]="limit">
+        <mat-option *ngFor="let size of sizeList" [value]="size">{{size}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    &nbsp;
+    <button mat-flat-button color="accent" [disabled]="!hasPrevPage" (click)="setPage(prevPage)">Précedent</button>
+    &nbsp;
+    <ng-container *ngFor="let page of listePage">
+      <button mat-flat-button color="accent" (click)="redirect(page)">{{page}}</button>&nbsp;
+    </ng-container>
+    <label>...</label>
+    &nbsp;
+    <button mat-flat-button color="accent" (click)="redirect(totalPages)">{{totalPages}}</button>&nbsp;
+    <button mat-flat-button color="accent" [disabled]="!hasNextPage" (click)="setPage(nextPage)">Suivant</button>
+  </div>
+
+  <!-- <div>
+    <mat-paginator [length]="totalDocs" [pageSize]="page" [pageSizeOptions]="sizeList">
+    </mat-paginator>
+  </div> -->
+
+  <br>
+  <label *ngIf="!show">Nombre total d'assignments: {{totalDocs}}</label>
+  <br>
+  <br>
+  <br>
+</main>
