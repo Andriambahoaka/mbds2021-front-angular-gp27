@@ -14,9 +14,12 @@ export class AssignmentsService {
 
   constructor(private loggingService:LoggingService, private http:HttpClient) { }
 
-  // uri="https://assignments-back-groupe27.herokuapp.com/api/assignments"
+  uri="https://assignments-back-groupe27.herokuapp.com/api/assignments"
 
-  uri = "http://localhost:8010/api/assignments";
+
+  //uri = "http://localhost:8010/api/assignments";
+
+
 
   getAssignments():Observable<Assignment[]> {
     console.log("Dans le service de gestion des assignments...")

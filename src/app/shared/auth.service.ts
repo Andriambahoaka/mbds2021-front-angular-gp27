@@ -9,8 +9,8 @@ export class AuthService {
   loggedIn = false;
   admin = false;
   
-
-  uri = "http://localhost:8010/api";
+  uri="https://assignments-back-groupe27.herokuapp.com/api"
+ // uri = "http://localhost:8010/api";
 
   public headers = new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded; charset=utf-8'});
 

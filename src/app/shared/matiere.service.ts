@@ -11,7 +11,8 @@ export class MatiereService {
 
   constructor(private http:HttpClient) { }
 
-  uri = "http://localhost:8010/api/matieres";
+  uri="https://assignments-back-groupe27.herokuapp.com/api/matieres"
+  //uri = "http://localhost:8010/api/matieres";
 
   getMatieres():Observable<Matiere[]> { 
     console.log("Dans le service de gestion des matieres...")

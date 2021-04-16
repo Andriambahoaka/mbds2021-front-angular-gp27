@@ -11,8 +11,10 @@ import {MatTableDataSource} from '@angular/material/table';
 export class MatieresComponent implements OnInit {
 
   matieres:Matiere[];
-  displayedColumns: string[] = ['matiere','pathImage'];
+  displayedColumns: string[] = ['matiere','pathImage','prof.nomProfesseur','prof.pathProfesseur'];
   dataSource=null;
+
+
 
   constructor(private matiereService:MatiereService) { }
 
